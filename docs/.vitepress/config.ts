@@ -97,6 +97,7 @@ export default defineConfig({
           { text: 'Benchmarks', link: '/guide/benchmarks' },
           { text: 'Migration', link: '/guide/migration' },
           { text: 'Security', link: '/guide/security' },
+          { text: 'Self-hosting', link: '/guide/self-hosting' },
         ],
       },
       {

@@ -123,6 +123,16 @@ npm install -g @sylphx/anymd     # or run it once with: npx -y @sylphx/anymd <fi
 ```
 </details>
 
+<details>
+<summary><b>Remote / self-hosted (Docker, Dokploy, etc.)</b></summary>
+
+anymd also runs as a Streamable HTTP MCP server, for one instance shared by
+several agents instead of one process per client. Build the repo's
+[`Dockerfile`](Dockerfile) and set `MCP_API_KEY`; see
+[Self-hosting](https://sylphxai.github.io/anymd/guide/self-hosting) for the
+full Dokploy walkthrough.
+</details>
+
 ## Benchmarks
 
 [AgentDocBench](docs/guide/benchmarks.md) is an open benchmark for document → Markdown conversion for agents: license-clean documents in 12 categories (math papers, two-column papers, financial tables, forms, scans, CJK, slides, spreadsheets, Word, EPUB, HTML), scored on verbatim sentences, text F1, reading order, and table cells, with time and output tokens. Every tool runs on the same kind of GitHub-hosted runner (4 CPUs):
