@@ -7,10 +7,11 @@ import product from '../../product.json';
  * Local-first by construction: every asset here is served from this package.
  * No external fonts, scripts, trackers, or images.
  */
-const site = 'https://sylphxai.github.io/anymd/';
+const site = process.env.ANYMD_SITE_URL ?? 'https://sylphxai.github.io/anymd/';
+const base = new URL(site).pathname;
 
 export default defineConfig({
-  base: '/anymd/',
+  base,
   cleanUrls: true,
   title: 'anymd',
   description: product.description,
@@ -55,7 +56,7 @@ export default defineConfig({
     ],
     ['meta', { name: 'author', content: 'Sylphx' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/anymd/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}logo.svg` }],
   ],
 
   // Each page names its own URL, so search engines index every page, not just the home page.

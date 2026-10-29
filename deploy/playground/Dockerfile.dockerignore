@@ -1,0 +1,10 @@
+.git
+node_modules
+target
+docs/.vitepress/dist
+docs/.vitepress/cache
+docs/public/wasm
+coverage
+.env
+.env.*
+*.log
