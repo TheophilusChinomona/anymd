@@ -8,6 +8,27 @@ import path from 'node:path';
 const root = path.resolve(import.meta.dir, '..');
 
 describe('playground deployment', () => {
+  it('builds the custom-domain site without Git in the container', () => {
+    const result = spawnSync(
+      process.execPath,
+      ['node_modules/vitepress/bin/vitepress.js', 'build', 'docs'],
+      {
+        cwd: root,
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          PATH: '/nonexistent',
+          ANYMD_SITE_URL: 'https://anymd.sentiolangley.me/',
+        },
+        timeout: 60000,
+      }
+    );
+    expect(result.status).toBe(0);
+    const html = readFileSync(path.join(root, 'docs/.vitepress/dist/playground.html'), 'utf8');
+    expect(html).toContain('https://anymd.sentiolangley.me/playground');
+    expect(html).toContain('href="/logo.svg"');
+  }, 60000);
+
   it('hashes exact inline bootstraps on every page without allowing arbitrary inline scripts', () => {
     const dir = mkdtempSync(path.join(tmpdir(), 'anymd-csp-'));
     try {

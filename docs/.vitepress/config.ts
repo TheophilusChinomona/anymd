@@ -19,7 +19,8 @@ export default defineConfig({
   // anymd's identity is ink + citrus; dark is the designed default and the
   // toggle still lets readers choose light.
   appearance: 'dark',
-  lastUpdated: true,
+  // Container builds intentionally exclude Git history.
+  lastUpdated: !process.env.ANYMD_SITE_URL,
   sitemap: { hostname: site },
 
   // Internal records kept for repository scripts and history; not part of the site.
