@@ -68,6 +68,9 @@ describe('playground deployment', () => {
     expect(dockerfile).toContain('bash scripts/build-wasm.sh');
     expect(dockerfile).toContain('test -s docs/.vitepress/dist/wasm/anymd_wasm_bg.wasm');
     expect(dockerfile).not.toContain('MCP_API_KEY');
+    expect(readFileSync(path.join(root, 'deploy/playground/nginx.conf'), 'utf8')).toContain(
+      'absolute_redirect off;'
+    );
     expect(readFileSync(path.join(root, 'Dockerfile'), 'utf8')).toContain('CMD ["mcp"]');
   });
 });
